@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7c3aed" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/heart.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <title>Grow Together | Who's your forever partner?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast hidden"></div>
+
+  <main id="app">
+    <section id="authView" class="screen auth-screen">
+      <div class="brand-card glass">
+        <div class="heart-orbit">🤍</div>
+        <p class="eyebrow">Couple Growth Space</p>
+        <h1>Who's your forever partner?</h1>
+        <p class="lead">A private space for your routines, memories, goals, moods, music, and little moments — synced together in real time.</p>
+        <div class="mini-features">
+          <span>✨ Routine</span>
+          <span>📸 Memories</span>
+          <span>⏳ Timers</span>
+          <span>🔥 Streak</span>
+        </div>
+      </div>
+
+      <div class="auth-card glass">
+        <div class="tabs">
+          <button class="tab active" data-auth-tab="login">Login</button>
+          <button class="tab" data-auth-tab="signup">Create Account</button>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <label>Email</label>
+          <input id="loginEmail" type="email" required placeholder="name@email.com" />
+          <label>Password</label>
+          <input id="loginPassword" type="password" required placeholder="••••••••" />
+          <button class="primary" type="submit">Login</button>
+          <button id="forgotPasswordBtn" class="ghost full" type="button">Forgot password?</button>
+        </form>
+
+        <form id="signupForm" class="auth-form hidden">
+          <label>Your name</label>
+          <input id="signupName" type="text" required placeholder="Your name" />
+          <label>Email</label>
+          <input id="signupEmail" type="email" required placeholder="name@email.com" />
+          <label>Password</label>
+          <input id="signupPassword" type="password" minlength="6" required placeholder="6 characters or more" />
+          <div class="form-row two compact-form">
+            <div>
+              <label>Birth date</label>
+              <input id="signupBirthDate" type="date" />
+            </div>
+            <div>
+              <label>Phone optional</label>
+              <input id="signupPhone" type="tel" placeholder="Phone number" />
+            </div>
+          </div>
+          <div class="form-row two compact-form">
+            <div>
+              <label>City</label>
+              <input id="signupCity" type="text" placeholder="Example: Nablus" />
+            </div>
+            <div>
+              <label>Favorite drink</label>
+              <input id="signupFavoriteDrink" type="text" placeholder="Coffee / Tea / ..." />
+            </div>
+          </div>
+          <label>Dream country</label>
+          <input id="signupDreamCountry" type="text" placeholder="Where do you dream of traveling?" />
+          <button class="primary" type="submit">Create Account</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="pairView" class="screen hidden">
+      <div class="topbar glass">
+        <div>
+          <p class="eyebrow">Partner Link</p>
+          <h2>Start your private space</h2>
+        </div>
+        <button id="logoutBtnPair" class="ghost">Logout</button>
+      </div>
+
+      <div class="grid two">
+        <div class="card glass">
+          <h3>I am starting the space</h3>
+          <p>Enter the date you became together, then the app will create a partner code to share.</p>
+          <label>Relationship start date</label>
+          <input id="relationshipStartDate" type="date" />
+          <button id="createCoupleBtn" class="primary">Create Partner Code</button>
+          <div id="newCodeBox" class="code-box hidden"></div>
+        </div>
+        <div class="card glass">
+          <h3>I have a partner code</h3>
+          <p>Enter the code and both accounts will join the same shared space.</p>
+          <label>Partner Code</label>
+          <input id="joinCode" type="text" placeholder="Example: GLOW-1234" />
+          <button id="joinCoupleBtn" class="primary">Join Shared Space</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="screen hidden">
+      <div id="homeHub" class="home-hub">
+        <header class="hero glass premium-hero">
+          <div class="hero-content">
+            <div class="top-row">
+              <div>
+                <p class="eyebrow">Glow Up Together</p>
+                <h1 id="coupleTitle">Growing together</h1>
+                <p id="togetherTimer" class="together-timer">Loading time together...</p>
+              </div>
+              <div class="profile-pill">
+                <span id="meName">Me</span>
+                <small id="pairCodeMini">Code</small>
+              </div>
+            </div>
+            <div class="streak-card">
+              <span>🔥</span>
+              <div>
+                <strong id="streakText">0 Days Growing Together</strong>
+                <small id="restoreText">3 streak restores available for each person</small>
+              </div>
+              <button id="restoreStreakBtn" class="small-btn">Restore</button>
+              <button id="globalPushBtn" class="small-btn" title="Receive routine reminders, event reminders, and partner invitations on this device">Enable Notifications</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="home-intro">
+          <div>
+            <p class="eyebrow">Your shared universe</p>
+            <h2>Choose a space</h2>
+          </div>
+          <button id="logoutBtn" class="ghost">Logout</button>
+        </div>
+        <nav id="mainNav" class="nav-grid"></nav>
+      </div>
+
+      <section id="sectionShell" class="section-shell glass hidden">
+        <div class="section-heading feature-toolbar">
+          <div class="feature-title-wrap">
+            <button id="backHomeBtn" class="back-button" type="button" aria-label="Back to home">←</button>
+            <div>
+              <p id="sectionEyebrow" class="eyebrow">Section</p>
+              <h2 id="sectionTitle">Home</h2>
+            </div>
+          </div>
+          <button id="sectionNotificationsBtn" class="ghost">Notifications</button>
+        </div>
+        <div id="sectionContent" class="feature-content"></div>
+      </section>
+
+      <aside id="persistentPlayerDock" class="persistent-player-dock hidden" aria-live="polite">
+        <div id="dockVideoWrap" class="dock-video-wrap"><div id="youtubePlayerPersistent" class="youtube-player persistent-youtube-player"></div></div>
+        <audio id="sharedAudioPersistent" class="hidden" preload="metadata"></audio>
+        <img id="dockArtwork" class="dock-artwork" alt="" />
+        <div class="dock-copy">
+          <small>Now Playing</small>
+          <strong id="dockTitle">Nothing playing</strong>
+          <span id="dockArtist"></span>
+        </div>
+        <div class="dock-actions">
+          <button id="dockPlayPauseBtn" class="dock-control" type="button" aria-label="Play or pause">▶</button>
+          <button id="dockOpenMusicBtn" class="dock-control" type="button" aria-label="Open Now Playing">♫</button>
+          <button id="dockInviteBtn" class="dock-control" type="button" aria-label="Invite partner">↗</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="cameraModal" class="camera-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
+    <div class="camera-dialog glass">
+      <div class="item-header">
+        <div><p class="eyebrow">Camera</p><h2 id="cameraTitle">Take a photo</h2></div>
+        <button id="closeCameraBtn" type="button" class="ghost">Close</button>
+      </div>
+      <div class="camera-stage">
+        <video id="cameraVideo" autoplay playsinline muted></video>
+        <canvas id="cameraCanvas" class="hidden"></canvas>
+        <img id="cameraPreview" class="hidden" alt="Captured photo preview" />
+      </div>
+      <p id="cameraStatus" class="form-hint">Allow camera access, then take a photo.</p>
+      <div class="inline-actions camera-actions">
+        <button id="capturePhotoBtn" type="button" class="primary">Take Photo</button>
+        <button id="retakePhotoBtn" type="button" class="ghost hidden">Retake</button>
+        <button id="usePhotoBtn" type="button" class="small-btn hidden">Use This Photo</button>
+      </div>
+    </div>
+  </div>
+
+  <template id="emptyTemplate">
+    <div class="empty-state">
+      <span>🤍</span>
+      <h3>Nothing here yet</h3>
+      <p>Start by adding your first item.</p>
+    </div>
+  </template>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
