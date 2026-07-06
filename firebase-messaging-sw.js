@@ -3,12 +3,12 @@ importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js
 importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js');
 
 firebase.initializeApp({
-  apiKey: "AIzaSyAiTsj_uNW408xVKQg7arkE76GtEhpevo",
+  apiKey: "*****************",
   authDomain: "glowup-partner-cbb33.firebaseapp.com",
-  projectId: "glowup-partner-cbb33",
+  projectId: "glowup*****************3",
   storageBucket: "glowup-partner-cbb33.firebasestorage.app",
-  messagingSenderId: "1092215193109",
-  appId: "1:1092215193109:web:e7661f0feb95ee7758981c"
+  messagingSenderId: "1092*************",
+  appId: "1:10922151*******************7758981c"
 });
 
 const messaging = firebase.messaging();
